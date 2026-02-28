@@ -7,46 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@1,300;1,400&family=Rajdhani:wght@300;500;700&family=Shippori+Mincho:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
-  /* VISITOR COUNTER */
-#visitor-counter.show{
-  opacity: 1;
-  pointer-events: auto;
-  transform: none;
-  animation: fup 1s cubic-bezier(0.16,1,0.3,1) both;
-}
-  #visitor-counter{
-  opacity: 0;
-pointer-events: none;
-transform: translateY(20px);
-  position:fixed;
-  top:22px;
-  right:200px;
-  z-index:60;
-  display:flex;
-  align-items:center;
-  gap:8px;
-  font-family:'Share Tech Mono', monospace;
-  font-size:12px;
-  letter-spacing:2px;
-  color:rgba(100,200,120,0.75);
-  background:rgba(5,18,9,0.88);
-  padding:6px 14px;
-  border:1px solid rgba(100,200,120,0.25);
-  backdrop-filter:blur(12px);
-  box-shadow:0 0 20px rgba(100,200,120,0.15);
-  transition:all 0.3s ease;
-}
-
-#visitor-counter:hover{
-  border-color:rgba(100,200,120,0.6);
-  box-shadow:0 0 30px rgba(100,200,120,0.35);
-}
-
-#visitor-counter svg{
-  width:16px;
-  height:16px;
-  fill:rgba(100,200,120,0.7);
-}
 *{box-sizing:border-box;margin:0;padding:0;}
 html,body{width:100%;height:100%;overflow:hidden;background:#000;}
 
@@ -187,12 +147,6 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;}
 </style>
 </head>
 <body>
-  <div id="visitor-counter">
-  <svg viewBox="0 0 24 24">
-    <path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/>
-  </svg>
-  <span id="visit-number">...</span>
-</div>
 
 <div class="vbg">
   <video autoplay muted loop playsinline>
@@ -290,16 +244,6 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;}
 
 <script src="https://w.soundcloud.com/player/api.js"></script>
 <script>
-fetch("https://api.countapi.xyz/hit/zoro2444z-welcome/visits")
-  .then(res => res.json())
-  .then(res => {
-    document.getElementById("visit-number").textContent = res.value;
-  })
-  .catch(() => {
-    document.getElementById("visit-number").textContent = "—";
-  });
-</script>
-<script>
   let widget=null,muted=false,widgetReady=false;
   (function w(){if(typeof SC!=='undefined'){widget=SC.Widget(document.getElementById('sc'));widget.bind(SC.Widget.Events.READY,function(){widgetReady=true;widget.setVolume(30);});widget.bind(SC.Widget.Events.FINISH,function(){widget.seekTo(0);widget.play();})}else{setTimeout(w,100);}})();
   function enter(){
@@ -310,24 +254,11 @@ fetch("https://api.countapi.xyz/hit/zoro2444z-welcome/visits")
       document.getElementById('sideL').classList.add('show');
       document.getElementById('sideR').classList.add('show');
       document.getElementById('muteBtn').classList.add('show');
-      setTimeout(() => {
-  document.getElementById('visitor-counter').classList.add('show');
-}, 700);
     },400);
     (function t(){if(widgetReady){widget.play();}else{setTimeout(t,80);}})();
   }
   function toggleMute(){muted=!muted;if(widget)widget.setVolume(muted?0:30);document.getElementById('sound-icon').style.display=muted?'none':'block';document.getElementById('mute-icon').style.display=muted?'block':'none';document.getElementById('muteBtn').classList.toggle('muted',muted);}
   function copy(text){navigator.clipboard.writeText(text).then(()=>{const t=document.getElementById('toast');t.textContent='COPIED — '+text;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);});}
-</script>
-<script>
-fetch("https://api.countapi.xyz/hit/zoro2444z-welcome/visits")
-  .then(res => res.json())
-  .then(res => {
-    document.getElementById("visit-number").textContent = res.value;
-  })
-  .catch(() => {
-    document.getElementById("visit-number").textContent = "—";
-  });
 </script>
 </body>
 </html>
